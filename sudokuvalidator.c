@@ -87,21 +87,27 @@ int main(int argc, const char *argv[]) {
 			}
 		}
 	}
-	int 
 	printf("row down\n");
 	int l;
 	for (k = 0; k < ONE_THIRD_LENGTH; k++){
 		for (l = 0; l < ONE_THIRD_LENGTH; l++){
+			int clonearr[9]={1,2,3,4,5,6,7,8,9};
+			val1=puz[k*3][l*3];
+			if(clonearr[val1-1]!=0){
+				clonearr[val1-1]=0;
+			}
 			for (i = 0; i < ONE_THIRD_LENGTH; i++){
 				for (j = 0; j < ONE_THIRD_LENGTH; j++){
-					val2 = puz[k*3][l*3+j];
-					val1 = puz[k*3+i][l*3];			
-					if (val1 == val2){		
-						if (!(i == j)){
-							printf("we found duplicate in [%d][%d][%d][%d]  \n", k, i, k, j);
-							return 0;
-						}
+					val2=puz[k*3+i][l*3+j];
+					if(clonearr[val2-1]!=0){
+						clonearr[val2-1]=0;
 					}
+					else if(clonearr[val2-1]==0 && i+j != 0){
+
+						printf("we found duplicate in [%d][%d]\n" k*3+i, l*3+j);
+						return 0;
+					}
+
 				}
 			}
 		}
