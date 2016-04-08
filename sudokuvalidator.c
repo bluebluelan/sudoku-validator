@@ -104,7 +104,7 @@ int main(int argc, const char *argv[]) {
 					}
 					else if(clonearr[val2-1]==0 && i+j != 0){
 
-						printf("we found duplicate in [%d][%d]\n" k*3+i, l*3+j);
+						printf("we found duplicate in [%d][%d]\n", k*3+i, l*3+j);
 						return 0;
 					}
 
