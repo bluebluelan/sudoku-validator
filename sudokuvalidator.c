@@ -121,13 +121,12 @@ int main(int argc, const char *argv[]) {
 			}
 		}
 		
-		/* set the variables in an array to be passed in pthread_create */
 		thread_args[0] = chk;
 		thread_args[1] = initialrow;
 		thread_args[2] = initialcol;
 		thread_args[3] = i;
- 		/* create the new thread */
- 		//printf("we found duplicate in [%d][%d] in thread %d \n", initialrow, initialcol, i);
+ 		// create the new thread 
+ 		//printf("we create in [%d][%d] thread %d \n", initialrow, initialcol, i);
         pthread_create(&workers[i], NULL, runner, (void *)thread_args);
 	}
 
@@ -168,7 +167,6 @@ void *runner(void *para){
 					if (val1 == val2) {		
 						if (i != j){
 							printf("we found duplicate in [%d][%d]-[%d][%d] in thread %d \n", initialrow, i, initialrow, j, thread_num);
-							fflush(stdout);
 							pthread_mutex_lock(&lock);
 							duplicate = TRUE;
 							pthread_mutex_unlock(&lock);		
@@ -189,7 +187,6 @@ void *runner(void *para){
 				if (val1 == val2) {		
 					if (i != j){
 						printf("we found duplicate in [%d][%d]-[%d][%d] in thread %d \n", i, initialcol, j, initialcol, thread_num);
-						fflush(stdout);
 						pthread_mutex_lock(&lock);
 						duplicate = TRUE;
 						pthread_mutex_unlock(&lock);
@@ -208,7 +205,6 @@ void *runner(void *para){
 				val2=solution[i][j];
 				if(clonearr[val2-1] == 0){
 					printf("we found duplicate in [%d][%d] in thread %d \n", i, j, thread_num);
-					fflush(stdout);
 					pthread_mutex_lock(&lock);
 					duplicate = TRUE;
 					pthread_mutex_unlock(&lock);
